@@ -95,7 +95,7 @@ const Sidebar = () => {
               </div>
             ) : (
               <div className={`${addPlaylist ? "block relative" : "hidden"}`}>
-                <div className="absolute rounded-tl-none top-0 left-44  lg:left-72  bg-blue-500 p-4 rounded-xl w-full ">
+                <div className="absolute z-50 rounded-tl-none top-0 left-44  lg:left-72  bg-blue-500 p-4 rounded-xl w-full ">
                   <h2 className="cursor-pointer hover:underline" onClick={navigatePlaylist}>See Playlists</h2>
                   
                 </div>

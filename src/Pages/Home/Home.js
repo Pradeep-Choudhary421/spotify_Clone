@@ -72,12 +72,12 @@ const Home = () => {
                     className="group hover:bg-[#23282b] px-4 flex flex-col justify-center duration-700 rounded-2xl py-4 cursor-pointer"
                   >
                     <div
-                      className=" relative"
+                      className=" "
                       onClick={() => handleArtist(item)}
                     >
-                      <div className=" absolute bottom-4 right-3 text-black bg-green-500 p-3 rounded-[50%] hidden group-hover:block ">
+                      {/* <div className=" absolute bottom-4 right-3 text-black bg-green-500 p-3 rounded-[50%] hidden group-hover:block ">
                         <FaPlay />
-                      </div>
+                      </div> */}
                       <img
                         className="h-44 w-44 max-w-full rounded-[50%]"
                         src={item.artistImg}
@@ -111,10 +111,10 @@ const Home = () => {
                     key={index}
                     className="group hover:bg-[#23282b] px-4 flex flex-col justify-center duration-700 rounded-2xl py-4 cursor-pointer"
                   >
-                    <div className=" relative " onClick={()=>handleAlbum(item)}>
-                      <div className=" absolute bottom-4 right-3 bg-green-500 p-3 rounded-[50%] hidden group-hover:block transition- duration-700">
+                    <div className="  " onClick={()=>handleAlbum(item)}>
+                      {/* <div className=" absolute bottom-4 right-3 bg-green-500 p-3 rounded-[50%] hidden group-hover:block transition- duration-700">
                         <FaPlay />
-                      </div>
+                      </div> */}
                       <img
                         className="h-auto w-44 max-w-full rounded-lg"
                         src={item.albumImg}

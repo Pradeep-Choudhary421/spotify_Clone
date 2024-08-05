@@ -15,7 +15,10 @@ const PlaylistSong = () => {
 
     useEffect(()=>{
         axios.get(playlistSongUrl).then((res)=>{
-            setPlaylistSongs(res.data.data[0])
+            const data = res.data.data[0]
+            const filteredData = data.filter((result)=> result.playlistId === playlistData.id ) 
+            // console.log(filteredData)
+            setPlaylistSongs(filteredData)
         }).catch((err)=>{
             console.log(err)
         })
