@@ -96,7 +96,7 @@ const Sidebar = () => {
             ) : (
               <div className={`${addPlaylist ? "block relative" : "hidden"}`}>
                 <div className="absolute rounded-tl-none top-0 left-44  lg:left-72  bg-blue-500 p-4 rounded-xl w-full ">
-                  <h2 className="cursor-pointer hover:underline" onClick={navigatePlaylist}>Create a new Playlist</h2>
+                  <h2 className="cursor-pointer hover:underline" onClick={navigatePlaylist}>See Playlists</h2>
                   
                 </div>
               </div>
@@ -108,7 +108,7 @@ const Sidebar = () => {
                 className=" mt-2 cursor-pointer hover:scale-110 duration-300 bg-white text-black w-fit px-2 py-1 rounded-xl "
                 onClick={handleAddPlaylist}
               >
-                Create Playlist
+                Playlists
               </div>
             </div>
           </div>

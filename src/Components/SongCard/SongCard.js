@@ -4,6 +4,7 @@ import "react-h5-audio-player/lib/styles.css";
 import "./songcard.css";
 import { FaPlus } from "react-icons/fa6";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const SongCard = ({ data }) => {
   const [toggleAddTo, setToggleAddTo] = useState(false);
@@ -31,6 +32,7 @@ const SongCard = ({ data }) => {
       })
       .then((res) => {
         setToggleAddTo(false)
+        toast.success(`Song Added To ${e.playlist_name}`)
       }).catch((err) => {
         console.log(err);
       });
