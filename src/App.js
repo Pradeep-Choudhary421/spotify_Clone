@@ -11,6 +11,7 @@ import Profile from './Pages/Profile/Profile'
 import ArtistsSong from './Components/ArtistSongs/ArtistsSong';
 import AlbumSongs from './Components/AlbumSongs/AlbumSongs';
 import ShowAll from './Pages/ShowAll/ShowAll';
+import PlaylistSong from './Components/PlaylistsSong/PlaylistSong';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
       <Route path='/artistsSong' element={<ArtistsSong/>}/>
       <Route path='/albumSongs' element={<AlbumSongs/>}/>
       <Route path='/showAll' element={<ShowAll/>}/>
+      <Route path='/playlistSong' element={<PlaylistSong/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signUp' element={<SignUp/>}/>
     </Routes>

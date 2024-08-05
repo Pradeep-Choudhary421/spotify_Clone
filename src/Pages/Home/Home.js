@@ -3,7 +3,6 @@ import { FaPlay } from "react-icons/fa";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
-import ArtistsSong from "../../Components/ArtistSongs/ArtistsSong";
 import { useNavigate } from "react-router-dom";
 import SongCard from "../../Components/SongCard/SongCard";
 
