@@ -6,7 +6,6 @@ import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
 import ArtistsSong from "../../Components/ArtistSongs/ArtistsSong";
 import { useNavigate } from "react-router-dom";
-import Sidebar from '../../Components/Sidebar/Sidebar';
 import SongCard from '../../Components/SongCard/SongCard';
 import { store } from '../../Context/Store';
 
@@ -59,7 +58,6 @@ const ShowAll = () => {
     <>
     
     <div className="flex bg-black min-h-screen pb-24">
-        <Sidebar />
       <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
         {/* nav */}
         <Navbar />

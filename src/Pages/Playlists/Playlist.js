@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
 import Footer from "../../Components/Footer/Footer";
@@ -50,7 +49,6 @@ const Playlist = () => {
   }
   return (
     <div className="flex bg-black min-h-screen pb-24">
-        <Sidebar />
       <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
         {/* nav */}
         <Navbar />

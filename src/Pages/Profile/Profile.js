@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Nav/Navbar";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
@@ -77,7 +76,6 @@ const Profile = () => {
   return (
     <>
         <div className="flex bg-black relative ">
-        <Sidebar />
 
         <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
           {/* nav */}

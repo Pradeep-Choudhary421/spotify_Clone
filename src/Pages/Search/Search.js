@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
 import SongCard from "../../Components/SongCard/SongCard";
@@ -49,7 +48,6 @@ const Search = () => {
   return (
     <>
       <div className="flex bg-black min-h-screen pb-24">
-        <Sidebar />
 
         <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
           <Navbar />
@@ -103,7 +101,7 @@ const Search = () => {
             <div className="grid grid-cols-1 mt-8 justify-items-center">
               <ul className="max-w-2xl w-full px-4 md:px-0">
                 {filteredSong.length > 0 ? (
-                  filteredSong.map((song, index) => (
+                  filteredSong.slice(0,8).map((song, index) => (
                     <li
                       key={index}
                       className="py-3 sm:py-4 hover:bg-gray-500 px-4 opacity-100 rounded-2xl cursor-pointer my-2"

@@ -11,7 +11,7 @@ const Sidebar = () => {
   const token = sessionStorage.getItem("token");
 
   const navigateHome = () => {
-    navigate("/");
+    navigate("/home");
   };
   const navigateSearch = () => {
     navigate("/search");

@@ -51,7 +51,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
+      <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4  ml-60 sm:ml-72 lg:ml-96">
         {/* nav */}
         <Navbar />
 
@@ -137,7 +137,7 @@ const Home = () => {
           <Footer />
         </div>
       </div>
-        <div className=' w-full z-50 bottom-0 fixed '>
+        <div className='w-full z-50 bottom-0 fixed '>
           {<SongCard data={currentSong} />}
       </div>
     </>

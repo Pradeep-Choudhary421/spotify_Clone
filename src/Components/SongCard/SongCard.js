@@ -53,7 +53,7 @@ const SongCard = ({ data }) => {
         <div>
           <div className="flex">
             <h1 className="text-white px-8">{data.songName}</h1>
-            <div className="  relative">
+            <div className="relative">
               <div
                 className={
                   toggleAddTo ? "block absolute bottom-8 right-0" : "hidden"
