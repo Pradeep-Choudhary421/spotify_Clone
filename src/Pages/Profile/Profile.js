@@ -6,21 +6,39 @@ import { IoIosLogOut } from "react-icons/io";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+
 
 const Profile = () => {
   const [userFormData, setUserFormData] = useState([]);
+  // const [nullFormData, setNullFormData] = useState([]);
   const userId = sessionStorage.getItem("userId");
   const userName = sessionStorage.getItem("userName");
   const getProUrl = `http://localhost:5555/user/getProfileData/${userId}`;
   const deleteUrl = `http://localhost:5555/user/deleteUser/${userId}`;
   const deleteProUrl = `http://localhost:5555/user/deleteProfile/${userId}`;
   const navigate = useNavigate();
+  const nullData = [{
+    firstName : "--", 
+    lastName : "--",
+    email : "--",
+    gender : "--",
+    phoneNo : "--",
+    currentAdd : "--",
+    permanentAdd : "--",
+    dob : "--",
+  }]
 
   useEffect(() => {
     axios
       .get(getProUrl)
       .then((res) => {
-        setUserFormData(res.data.data[0][0]);
+        if(res.data.data[0][0] === undefined){
+          setUserFormData(nullData[0])
+        }
+        else{
+          setUserFormData(res.data.data[0][0]);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -28,6 +46,10 @@ const Profile = () => {
   }, [getProUrl]);
 
   const handleDelete = () => {
+    Loading.dots("Loading...", {
+      backgroundColor: "rgba(0,0,0,0.8)",
+      svgColor: "#fff",
+    });
     axios
       .delete(deleteUrl)
       .then((res) => {
@@ -37,11 +59,17 @@ const Profile = () => {
             console.log(err)
         })
         sessionStorage.clear();
+        Loading.remove(2000)
         toast.success("Account Deleted");
         navigate("/");
       });
   };
   const handleLogOut = ()=>{
+    Loading.dots("Loading...", {
+      backgroundColor: "rgba(0,0,0,0.8)",
+      svgColor: "#fff",
+    });
+    Loading.remove(2000)
     sessionStorage.clear();
     navigate("/");
   }
