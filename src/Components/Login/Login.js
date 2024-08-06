@@ -17,12 +17,11 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
-        // console.log(res.data.data[0][0].id);
         sessionStorage.setItem("token", res.data.token);
         sessionStorage.setItem("userId", res.data.data[0][0].id);
         sessionStorage.setItem("userName", res.data.data[0][0].name);
         toast.success("Logged In");
-        navigate("/");
+        navigate("home");
       })
       .catch((err) => {
         if (err.response.status === 401) {

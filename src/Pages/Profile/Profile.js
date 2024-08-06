@@ -60,7 +60,7 @@ const Profile = () => {
         sessionStorage.clear();
         Loading.remove(2000)
         toast.success("Account Deleted");
-        navigate("/");
+        navigate("home");
       });
   };
   const handleLogOut = ()=>{
@@ -70,7 +70,7 @@ const Profile = () => {
     });
     Loading.remove(2000)
     sessionStorage.clear();
-    navigate("/home");
+    navigate("home");
   }
 
   return (

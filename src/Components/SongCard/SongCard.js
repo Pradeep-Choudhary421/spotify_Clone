@@ -10,6 +10,7 @@ const SongCard = ({ data }) => {
   const [toggleAddTo, setToggleAddTo] = useState(false);
   const [playlistData, setPlaylistData] = useState([]);
   const userId = sessionStorage.getItem("userId");
+  const token = sessionStorage.getItem("token");
   const addToUrl = "http://localhost:5555/music/addToPlaylist";
   const getPlayUrl = `http://localhost:5555/music/getAllPlaylist/${userId}`;
 
@@ -78,7 +79,7 @@ const SongCard = ({ data }) => {
                 </div>
               </div>
               <h2
-                className="text-green-500 border-2 rounded-full border-green-500 cursor-pointer my-auto text-xl "
+                className={ token ===null ?"hidden" : "text-green-500 border-2 rounded-full border-green-500 cursor-pointer my-auto text-xl "}
                 onClick={handleToggleAddTo}
               >
                 <FaPlus />
