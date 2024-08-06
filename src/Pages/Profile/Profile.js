@@ -70,7 +70,7 @@ const Profile = () => {
     });
     Loading.remove(2000)
     sessionStorage.clear();
-    navigate("/");
+    navigate("/home");
   }
 
   return (
