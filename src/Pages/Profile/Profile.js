@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import Sidebar from "../../Components/Sidebar/Sidebar";
 
 
 const Profile = () => {
@@ -60,7 +61,7 @@ const Profile = () => {
         sessionStorage.clear();
         Loading.remove(2000)
         toast.success("Account Deleted");
-        navigate("home");
+        navigate("/home");
       });
   };
   const handleLogOut = ()=>{
@@ -70,12 +71,13 @@ const Profile = () => {
     });
     Loading.remove(2000)
     sessionStorage.clear();
-    navigate("home");
+    navigate("/home");
   }
 
   return (
     <>
         <div className="flex bg-black relative ">
+          <Sidebar/>
 
         <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
           {/* nav */}

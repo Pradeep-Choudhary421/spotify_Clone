@@ -15,7 +15,7 @@ const Navbar = () => {
   };
   const handleLogOut = () => {
     sessionStorage.clear();
-    navigate("home");
+    navigate("/home");
   };
   return (
     <>

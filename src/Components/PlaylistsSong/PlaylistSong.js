@@ -38,8 +38,8 @@ const PlaylistSong = () => {
 
             <div>
             <div className="grid grid-cols-1 mt-8 justify-items-center">
-            <div className=' flex gap-4 w-full px-44'>
-                    <div><img src="https://m.media-amazon.com/images/I/31JSk-BC-3L._AC_UF894,1000_QL80_.jpg" className=' w-16' alt="" /></div>
+            <div className=' flex gap-4 w-full px-12 sm:px-24 md:px-44'>
+                    <div><img src="https://m.media-amazon.com/images/I/31JSk-BC-3L._AC_UF894,1000_QL80_.jpg" className=' min-w-8 w-8 md:w-16' alt="" /></div>
                     <div className='my-auto text-2xl'>{playlistData.playlist_name}</div>
                 </div>
             <ul className="max-w-2xl w-full px-4 md:px-0 border-t-2 mt-12">

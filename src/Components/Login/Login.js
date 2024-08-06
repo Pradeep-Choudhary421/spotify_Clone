@@ -21,7 +21,7 @@ const Login = () => {
         sessionStorage.setItem("userId", res.data.data[0][0].id);
         sessionStorage.setItem("userName", res.data.data[0][0].name);
         toast.success("Logged In");
-        navigate("home");
+        navigate("/home");
       })
       .catch((err) => {
         if (err.response.status === 401) {
