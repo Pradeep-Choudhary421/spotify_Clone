@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SongCard from '../SongCard/SongCard'
 import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../Nav/Navbar'
 import axios from 'axios'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import { store } from '../../Context/Store'
 
 const PlaylistSong = () => {
     const location = useLocation();
     const playlistData = location.state?.playlistData;
 
     const [playlistsongs, setPlaylistSongs] = useState([])
-    const [currentSong, setCurrentSong] = useState(null);
+    const { currentSong, setCurrentSong } = useContext(store);
     const playlistSongUrl = `http://localhost:5555/music/getPlaylistSongs`;
 
     useEffect(()=>{

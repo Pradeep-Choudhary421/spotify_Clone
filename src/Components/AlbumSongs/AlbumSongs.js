@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../Nav/Navbar'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import SongCard from '../SongCard/SongCard';
+import { store } from '../../Context/Store';
 
 const AlbumSongs = () => {
     const location = useLocation();
@@ -12,7 +13,7 @@ const AlbumSongs = () => {
     const songUrlArt = `http://localhost:5555/music/getSongAlbum/${data.albumName}`;
 
     const [albumSong, setAlbumSong] = useState([])
-    const [currentSong, setCurrentSong] = useState(null);
+    const { currentSong, setCurrentSong } = useContext(store);
 
     useEffect(()=>{
         axios.get(songUrlArt).then((res)=>{

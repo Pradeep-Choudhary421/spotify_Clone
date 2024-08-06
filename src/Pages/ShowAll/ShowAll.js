@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { FaPlay } from "react-icons/fa";
 import Footer from "../../Components/Footer/Footer";
@@ -8,6 +8,7 @@ import ArtistsSong from "../../Components/ArtistSongs/ArtistsSong";
 import { useNavigate } from "react-router-dom";
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import SongCard from '../../Components/SongCard/SongCard';
+import { store } from '../../Context/Store';
 
 const ShowAll = () => {
     const location = useLocation();
@@ -18,6 +19,7 @@ const ShowAll = () => {
 
   const [album, setAlbum] = useState([]);
   const [artist, setArtist] = useState([]);
+  const { currentSong, setCurrentSong } = useContext(store);
 
 
   const navigate = useNavigate();
@@ -134,13 +136,11 @@ const ShowAll = () => {
             </div>
           </div>
 
-          
-
           {/* footer */}
           <Footer />
         </div>
         <div className=' w-full z-50 bottom-0 fixed '>
-          {<SongCard data={null} />}
+          {<SongCard data={currentSong} />}
       </div>
         </div>
     </>

@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SongCard from "../../Components/SongCard/SongCard";
+import { store } from "../../Context/Store";
 
 const Home = () => {
   const getAlbumUrl = "http://localhost:5555/music/getAlbum";
   const getArtistUrl = "http://localhost:5555/music/getArtist";
+  const { currentSong, setCurrentSong } = useContext(store);
 
   const [album, setAlbum] = useState([]);
   const [artist, setArtist] = useState([]);
-
 
   const navigate = useNavigate();
 
@@ -25,7 +26,6 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-
     axios
       .get(getArtistUrl)
       .then((res) => {
@@ -138,7 +138,7 @@ const Home = () => {
         </div>
       </div>
         <div className=' w-full z-50 bottom-0 fixed '>
-          {<SongCard data={null} />}
+          {<SongCard data={currentSong} />}
       </div>
     </>
   );

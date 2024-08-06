@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../Nav/Navbar'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import SongCard from '../SongCard/SongCard';
+import { store } from '../../Context/Store';
 
 const ArtistsSong = () => {
     const location = useLocation();
@@ -11,8 +12,8 @@ const ArtistsSong = () => {
 
     const songUrlArt = `http://localhost:5555/music/getSongArtist/${data.artistName}`;
 
-    const [artistSong, setArtistiSong] = useState([])
-    const [currentSong, setCurrentSong] = useState(null);
+    const [artistSong, setArtistiSong] = useState([]);
+    const { currentSong, setCurrentSong } = useContext(store);
 
     useEffect(()=>{
         axios.get(songUrlArt).then((res)=>{

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
@@ -6,6 +6,7 @@ import Footer from "../../Components/Footer/Footer";
 import SongCard from "../../Components/SongCard/SongCard";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { store } from "../../Context/Store";
 
 const Playlist = () => {
 
@@ -16,6 +17,7 @@ const Playlist = () => {
   const [playlistName, setPlaylistName] = useState("")
   const [playlistData, setPlaylistData] = useState([]);
   const [togglecreate, setToggleCreate] = useState(false);
+  const { currentSong, setCurrentSong } = useContext(store);
 
 
   useEffect(()=>{
@@ -115,7 +117,7 @@ const Playlist = () => {
           <Footer />
         </div>
         <div className=' w-full z-50 bottom-0 fixed '>
-          {<SongCard data={null} />}
+          {<SongCard data={currentSong} />}
       </div>
         </div>
   );

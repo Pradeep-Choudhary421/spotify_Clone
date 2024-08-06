@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Nav/Navbar";
 import axios from "axios";
 import SongCard from "../../Components/SongCard/SongCard";
+import { store } from "../../Context/Store";
 
 const Search = () => {
   const [songData, setSongData] = useState([]);
   const [filteredSong, setFilteredSong] = useState([]);
-  const [currentSong, setCurrentSong] = useState(null);
+  const { currentSong, setCurrentSong } = useContext(store);
   const [searchQuery, setSearchQuery] = useState("");
   const getSongsUrl = "http://localhost:5555/music/getSong";
 
@@ -15,8 +16,8 @@ const Search = () => {
     axios
       .get(getSongsUrl)
       .then((res) => {
-        setSongData(res.data.songs[0]); 
-        setFilteredSong(res.data.songs[0]); 
+        setSongData(res.data.songs[0]);
+        setFilteredSong(res.data.songs[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -24,7 +25,7 @@ const Search = () => {
   }, [searchQuery]);
 
   const handleSearch = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     if (searchQuery) {
       const lowercasedQuery = searchQuery.toLowerCase();
       const filtered = songData.filter(
@@ -34,16 +35,16 @@ const Search = () => {
       );
       setFilteredSong(filtered);
     } else {
-      setFilteredSong(songData); 
+      setFilteredSong(songData);
     }
   };
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-  const handlePlay = (song) =>{
+  const handlePlay = (song) => {
     setCurrentSong(song);
-  }
+  };
 
   return (
     <>
@@ -137,9 +138,9 @@ const Search = () => {
             </div>
           </div>
         </div>
-        <div className=' w-full z-50 bottom-0 fixed '>
-        {currentSong ? <SongCard data={currentSong} /> : <SongCard data={null} />}
-      </div>
+        <div className=" w-full z-50 bottom-0 fixed ">
+          {<SongCard data={currentSong} />}
+        </div>
       </div>
     </>
   );

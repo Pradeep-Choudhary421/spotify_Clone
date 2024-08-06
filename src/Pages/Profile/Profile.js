@@ -74,7 +74,6 @@ const Profile = () => {
     navigate("/");
   }
 
-  
   return (
     <>
         <div className="flex bg-black relative ">

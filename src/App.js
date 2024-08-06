@@ -12,10 +12,12 @@ import ArtistsSong from './Components/ArtistSongs/ArtistsSong';
 import AlbumSongs from './Components/AlbumSongs/AlbumSongs';
 import ShowAll from './Pages/ShowAll/ShowAll';
 import PlaylistSong from './Components/PlaylistsSong/PlaylistSong';
+import Provider from './Context/Store';
 
 const App = () => {
   return (
     <>
+    <Provider>
     <BrowserRouter>
     <ToastContainer autoClose={2000} position='top-center' />
     <Routes>
@@ -31,6 +33,7 @@ const App = () => {
       <Route path='/signUp' element={<SignUp/>}/>
     </Routes>
     </BrowserRouter>
+    </Provider>
     
     </>
   )
