@@ -32,9 +32,10 @@ const SongCard = ({ data }) => {
         playlistId: e.id,
       })
       .then((res) => {
-        setToggleAddTo(false)
-        toast.success(`Song Added To ${e.playlist_name}`)
-      }).catch((err) => {
+        setToggleAddTo(false);
+        toast.success(`Song Added To ${e.playlist_name}`);
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -79,14 +80,18 @@ const SongCard = ({ data }) => {
                 </div>
               </div>
               <h2
-                className={ token ===null ?"hidden" : "text-green-500 border-2 rounded-full border-green-500 cursor-pointer my-auto text-xl "}
+                className={
+                  token === null
+                    ? "hidden"
+                    : "bg-white text-black p-[2px] rounded-full hover:bg-green-500 duration-500 cursor-pointer my-auto text-xl "
+                }
                 onClick={handleToggleAddTo}
               >
                 <FaPlus />
               </h2>
             </div>
           </div>
-          <AudioPlayer src={data.songFile} />
+          <AudioPlayer autoPlay src={data.songFile} />
         </div>
       )}
     </>

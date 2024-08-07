@@ -1,65 +1,87 @@
-import React, { useContext, useEffect, useState } from 'react'
-import SongCard from '../SongCard/SongCard'
-import Navbar from '../Nav/Navbar'
-import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { store } from '../../Context/Store'
-import { Loading } from 'notiflix';
+import React, { useContext, useEffect, useState } from "react";
+import { MdDelete } from "react-icons/md";
+import SongCard from "../SongCard/SongCard";
+import Navbar from "../Nav/Navbar";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { store } from "../../Context/Store";
+import { Loading } from "notiflix";
 
 const PlaylistSong = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const playlistData = location.state?.playlistData;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const playlistData = location.state?.playlistData;
 
-    const [playlistsongs, setPlaylistSongs] = useState([])
-    const { currentSong, setCurrentSong } = useContext(store);
-    const playlistSongUrl = `http://localhost:5555/music/getPlaylistSongs`;
-    const playlistDeleteUrl = `http://localhost:5555/music/deletePlaylist/${playlistData.id}`;
+  const [playlistsongs, setPlaylistSongs] = useState([]);
+  const { currentSong, setCurrentSong } = useContext(store);
+  const playlistSongUrl = `http://localhost:5555/music/getPlaylistSongs`;
+  const playlistDeleteUrl = `http://localhost:5555/music/deletePlaylist/${playlistData.id}`;
 
-    const handleDeletePlaylist = () =>{
-      Loading.dots("Loading...", {
-        backgroundColor: "rgba(0,0,0,0.8)",
-        svgColor: "#fff",
-      });
-      axios.delete(playlistDeleteUrl).then((res)=>{
-        navigate("/playlist")
-        Loading.remove(2000)
-      }).catch((err)=>{
-        console.log(err);
+  const handleDeletePlaylist = () => {
+    Loading.dots("Loading...", {
+      backgroundColor: "rgba(0,0,0,0.8)",
+      svgColor: "#fff",
+    });
+    axios
+      .delete(playlistDeleteUrl)
+      .then((res) => {
+        navigate("/playlist");
+        Loading.remove(2000);
       })
-    }
-    useEffect(()=>{
-        axios.get(playlistSongUrl).then((res)=>{
-            const data = res.data.data[0]
-            const filteredData = data.filter((result)=> result.playlistId === playlistData.id ) 
-            // console.log(filteredData)
-            setPlaylistSongs(filteredData)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    },[])
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    axios
+      .get(playlistSongUrl)
+      .then((res) => {
+        const data = res.data.data[0];
+        const filteredData = data.filter(
+          (result) => result.playlistId === playlistData.id
+        );
+        // console.log(filteredData)
+        setPlaylistSongs(filteredData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-    const handlePlay = (item) =>{
-        setCurrentSong(item)
-    }
+  const handlePlay = (item) => {
+    setCurrentSong(item);
+  };
   return (
     <div className="flex bg-black min-h-screen pb-24">
+      <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
+        <Navbar />
 
-        <div className="min-w-full md:min-w-72 bg-black text-white py-4 px-4 w-full ml-60 sm:ml-72 lg:ml-96">
-          <Navbar />
-
-          <div className="bg-[#15181a] py-4 px-8 rounded-[6px] h-full rounded-t-none overflow-hidden">
-
-            <div>
+        <div className="bg-[#15181a] py-4 px-8 rounded-[6px] h-full rounded-t-none overflow-hidden">
+          <div>
             <div className="grid grid-cols-1 mt-8 justify-items-center">
-            <div className=' flex justify-between w-full px-12 sm:px-24 md:px-44'>
-              <div className='flex gap-4'>
-                    <div><img src="https://m.media-amazon.com/images/I/31JSk-BC-3L._AC_UF894,1000_QL80_.jpg" className=' min-w-8 w-8 md:w-16' alt="" /></div>
-                    <div className='my-auto text-2xl'>{playlistData.playlist_name}</div>
+              <div className=" flex justify-between w-full px-12 sm:px-24 md:px-44">
+                <div className="flex gap-4">
+                  <div>
+                    <img
+                      src="https://m.media-amazon.com/images/I/31JSk-BC-3L._AC_UF894,1000_QL80_.jpg"
+                      className=" min-w-8 w-8 md:w-16"
+                      alt=""
+                    />
+                  </div>
+                  <div className="my-auto text-2xl">
+                    {playlistData.playlist_name}
+                  </div>
                 </div>
-                    <div className='flex justify-end'><button className='my-auto bg-white text-black px-2 py-1 rounded-lg hover:bg-red-700 hover:text-white duration-500' onClick={handleDeletePlaylist}>Delete Playlist</button></div>
+                <div className="flex justify-end">
+                  <button
+                    className="my-auto bg-white text-black px-2 py-1 rounded-lg hover:bg-red-700 hover:text-white duration-500 text-2xl"
+                    onClick={handleDeletePlaylist}
+                  >
+                    <MdDelete />
+                  </button>
                 </div>
-            <ul className="max-w-2xl w-full px-4 md:px-0 border-t-2 mt-12">
+              </div>
+              <ul className="max-w-2xl w-full px-4 md:px-0 border-t-2 mt-12">
                 {playlistsongs.length > 0 ? (
                   playlistsongs.map((song, index) => (
                     <li
@@ -90,19 +112,24 @@ const PlaylistSong = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="text-center text-gray-500">No Song Added To This Playlist</p>
+                  <p className="text-center pt-6 text-gray-500">
+                    No Song Added To This Playlist
+                  </p>
                 )}
               </ul>
             </div>
-            </div>
-
           </div>
-          </div>
-          <div className=' w-full z-50 bottom-0 fixed '>
-          {currentSong ? <SongCard data={currentSong} /> : <SongCard data={null} />}
+        </div>
       </div>
-          </div>
-  )
-}
+      <div className=" w-full z-50 bottom-0 fixed ">
+        {currentSong ? (
+          <SongCard data={currentSong} />
+        ) : (
+          <SongCard data={null} />
+        )}
+      </div>
+    </div>
+  );
+};
 
-export default PlaylistSong
+export default PlaylistSong;
