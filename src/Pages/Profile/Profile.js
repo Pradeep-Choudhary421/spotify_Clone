@@ -55,13 +55,13 @@ const Profile = () => {
       .then((res) => {
         axios.delete(deleteProUrl).then((res)=>{
             console.log()
-        }).catch((err)=>{
-            console.log(err)
-        })
-        sessionStorage.clear();
-        Loading.remove(2000)
-        toast.success("Account Deleted");
-        navigate("/home");
+            sessionStorage.clear();
+            Loading.remove(2000)
+            toast.success("Account Deleted");
+            navigate("/");
+          }).catch((err)=>{
+              console.log(err)
+          })
       });
   };
   const handleLogOut = ()=>{
@@ -71,7 +71,7 @@ const Profile = () => {
     });
     Loading.remove(2000)
     sessionStorage.clear();
-    navigate("/home");
+    navigate("/");
   }
 
   return (

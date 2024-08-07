@@ -1,19 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react'
 import SongCard from '../SongCard/SongCard'
-import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../Nav/Navbar'
 import axios from 'axios'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { store } from '../../Context/Store'
+import { Loading } from 'notiflix';
 
 const PlaylistSong = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const playlistData = location.state?.playlistData;
 
     const [playlistsongs, setPlaylistSongs] = useState([])
     const { currentSong, setCurrentSong } = useContext(store);
     const playlistSongUrl = `http://localhost:5555/music/getPlaylistSongs`;
+    const playlistDeleteUrl = `http://localhost:5555/music/deletePlaylist/${playlistData.id}`;
 
+    const handleDeletePlaylist = () =>{
+      Loading.dots("Loading...", {
+        backgroundColor: "rgba(0,0,0,0.8)",
+        svgColor: "#fff",
+      });
+      axios.delete(playlistDeleteUrl).then((res)=>{
+        navigate("/playlist")
+        Loading.remove(2000)
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
     useEffect(()=>{
         axios.get(playlistSongUrl).then((res)=>{
             const data = res.data.data[0]
@@ -38,9 +52,12 @@ const PlaylistSong = () => {
 
             <div>
             <div className="grid grid-cols-1 mt-8 justify-items-center">
-            <div className=' flex gap-4 w-full px-12 sm:px-24 md:px-44'>
+            <div className=' flex justify-between w-full px-12 sm:px-24 md:px-44'>
+              <div className='flex gap-4'>
                     <div><img src="https://m.media-amazon.com/images/I/31JSk-BC-3L._AC_UF894,1000_QL80_.jpg" className=' min-w-8 w-8 md:w-16' alt="" /></div>
                     <div className='my-auto text-2xl'>{playlistData.playlist_name}</div>
+                </div>
+                    <div className='flex justify-end'><button className='my-auto bg-white text-black px-2 py-1 rounded-lg hover:bg-red-700 hover:text-white duration-500' onClick={handleDeletePlaylist}>Delete Playlist</button></div>
                 </div>
             <ul className="max-w-2xl w-full px-4 md:px-0 border-t-2 mt-12">
                 {playlistsongs.length > 0 ? (
